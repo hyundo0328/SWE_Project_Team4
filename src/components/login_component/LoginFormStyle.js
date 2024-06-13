@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 export const Form = styled.form`
   margin-top: auto;
-  padding-bottom: 50px;
+  // padding-bottom: 50px;
   width: 100%;
 
   .login-button {
@@ -41,6 +41,7 @@ export const SignupButton = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  margin-bottom: 50px;
 
   background-color: transparent;
   border: 0px;

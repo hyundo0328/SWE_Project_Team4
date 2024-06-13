@@ -5,6 +5,7 @@ import React, { useState } from "react";
 
 import { MessageContainer, MessageUser, MessageContent } from "./MessageStyle";
 import { RedButton } from "./MessageSendStyle";
+import { Button } from "../ButtonStyle";
 
 function Message() {
   return(
@@ -13,7 +14,7 @@ function Message() {
         <MessageUser><span style={{color:"#55BA6B"}}>나</span>의 메세지</MessageUser>
         <MessageContent>메세지 내용</MessageContent>
       </div>
-      <RedButton>삭제</RedButton>
+      <Button style={{backgroundColor:"#EB5A5A", marginLeft:"auto"}}>삭제</Button>
     </MessageContainer>
   )
 }

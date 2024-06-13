@@ -16,12 +16,12 @@ export const ImageContainer = styled.div`
   cursor: pointer;
 
   .image {
-    width: 15vw;
-    height: 15vh;
+    max-width: 800px;
+    max-height: 500px;
   }
   
   .text {
-    font-size: 1.5vw;
+    font-size: 30px;
     font-weight: bold;
     margin-top: 20px;
   }
@@ -51,7 +51,7 @@ export const UploadButton = styled.button`
   background-color: #576fd7;
   border-radius: 10px;
   border: 0px solid #fff;
-  margin-top: 12vh;
+  margin-top: 15vh;
   
   font-size: 25px;
   font-weight: bold;

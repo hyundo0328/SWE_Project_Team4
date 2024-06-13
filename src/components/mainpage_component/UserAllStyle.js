@@ -15,5 +15,7 @@ export const UserTitle = styled.div`
 
 export const UserContainer = styled.div`
   font-size: 20px;
-  padding: 20px;
+  margin: 20px;
+  max-height: 250px;
+  overflow-y: auto;
 `;

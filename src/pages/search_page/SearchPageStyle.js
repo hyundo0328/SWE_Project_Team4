@@ -3,13 +3,13 @@
 
 import styled from "styled-components";
 
-export const MypageContainer = styled.div`
+export const SearchContainer = styled.div`
   height: 100%;
   width: 50%;
   margin: auto;
   background-color: #FFFFFF;
 `;
 
-export const MypostContainer = styled.div`
+export const SearchPostContainer = styled.div`
   padding: 50px;
 `;

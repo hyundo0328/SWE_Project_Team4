@@ -13,13 +13,17 @@ import search from '../../assets/logo_search.svg';
 
 function Select(){
   const navigate = useNavigate();
+  const [searchTag, setSearchTag] = useState('')
+
+  const userName = localStorage.getItem('userName');
 
   return(
     <>
       <UserInfo>
-        <p style={{margin:"10px"}}>비회원 님</p>
+        <p style={{margin:"10px"}}>{ localStorage.length === 0 ? ('비회원') : (userName) } 님</p>
         <button className="logout-button" onClick={()=>{
           if (confirm("로그아웃 하시겠습니까?")) {
+            localStorage.clear();
             navigate('/login');
           }
         }}>로그아웃</button>
@@ -36,9 +40,19 @@ function Select(){
         <img src={message} alt="출력 실패" style={{width:"20px", height:"20px", marginRight:"10px"}}/>
         Direct Message
       </Container>
-      <SearchContainer>
-        <SearchText placeholder="해쉬태그 입력"/>
-        <img src={search} alt="출력 실패" style={{width:"22px", height:"22px", marginLeft:"5px", marginRight:"5px", cursor: "pointer"}}/>
+      <SearchContainer onSubmit={()=>{
+        localStorage.setItem('searchHashtag', searchTag);
+        navigate('/search-page');
+      }}>
+        <SearchText type="text" placeholder="해쉬태그 입력" value={searchTag} onChange={(e) => setSearchTag(e.target.value)} />
+        <img src={search} alt="출력 실패" style={{width:"22px", height:"22px", marginLeft:"5px", marginRight:"5px", cursor: "pointer"}}
+          onClick={()=>{
+            localStorage.setItem('searchHashtag', searchTag);
+            console.log(localStorage.getItem('searchHashtag'));
+            setSearchTag('');
+            navigate('/search-page');
+          }}
+        />
       </SearchContainer>
     </>
   )

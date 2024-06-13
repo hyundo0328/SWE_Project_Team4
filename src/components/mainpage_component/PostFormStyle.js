@@ -16,6 +16,11 @@ export const Title = styled.div`
   }
 `;
 
+export const PostList = styled.div`
+  max-height: 800px;
+  overflow-y: auto;
+`;
+
 export const PostContainer = styled.div`
   display: flex;
   flex-direction: column;

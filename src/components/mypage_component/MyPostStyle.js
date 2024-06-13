@@ -3,16 +3,31 @@
 
 import styled from "styled-components";
 
+export const FormContainer = styled.div`
+  max-height: 750px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  width: 800px;
-  height: 400px;
+  width: 100%;
+  height: 500px;
   background-color: #EEEEEE;
   border-radius: 10px;
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  max-width: 800px;
+  max-height: 500px;
 `;
 
 export const HashContainer = styled.div`

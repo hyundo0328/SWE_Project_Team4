@@ -3,16 +3,18 @@
 
 import React from "react";
 
-import UploadTitle from "../../components/upload_component/UploadTitle";
 import UploadImage from "../../components/upload_component/UploadPost";
 
 import { UploadContainer, ImageContainer } from "./UploadPageStyle";
+import { Title } from "../../components/TitleStyle.js";
 
 function UploadPage(){
   return(
     <div style={{backgroundColor:"#E3E9EF", height:"100vh"}}>
       <UploadContainer>
-        <UploadTitle/>
+        <Title>
+          게시글 업로드
+        </Title>
         <ImageContainer>
           <UploadImage/>
         </ImageContainer>

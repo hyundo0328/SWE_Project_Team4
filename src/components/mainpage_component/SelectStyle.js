@@ -42,7 +42,7 @@ export const Container = styled.div`
   }
 `;
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.form`
   display: flex;  
   align-items: center;
 

@@ -3,16 +3,18 @@
 
 import React from "react";
 
-import ReviseTitle from "../../components/revise_component/ReviseTitle";
 import RevisePost from "../../components/revise_component/RevisePost";
 
 import { ReviseContainer, ImageContainer } from "./RevisePageStyle";
+import { Title } from "../../components/TitleStyle";
 
 function RevisePage(){
   return(
     <div style={{backgroundColor:"#E3E9EF", height:"100vh"}}>
       <ReviseContainer>
-        <ReviseTitle/>
+        <Title>
+          게시글 수정
+        </Title>
         <ImageContainer>
           <RevisePost/>
         </ImageContainer>

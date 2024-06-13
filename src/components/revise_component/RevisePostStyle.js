@@ -10,14 +10,14 @@ export const ImageContainer = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 45vh;
+  height: 400px;
   background-color: #EEEEEE;
   border-radius: 10px;
   cursor: pointer;
 
   .image {
-    width: 15vw;
-    height: 15vh;
+    max-width: 800px;
+    max-height: 400px;
   }
   
   .text {
