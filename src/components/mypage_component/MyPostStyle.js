@@ -18,7 +18,7 @@ export const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 100%;
+  width: 800px;
   height: 500px;
   background-color: #EEEEEE;
   border-radius: 10px;

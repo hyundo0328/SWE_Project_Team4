@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
+import { PostContainer } from "../mainpage_component/PostFormStyle.js";
 import { FormContainer, ImageContainer, Image, HashContainer, TextContainer } from "./MyPostStyle";
 import { Button } from "../ButtonStyle.js";
 
@@ -22,12 +23,12 @@ function MyPost(){
     try {
       // console.log(localStorage.getItem('userName'));
       const userName = localStorage.getItem('userName'); // Get the userName from localStorage
+      const userID = localStorage.getItem('userID');
+      console.log(userID);
 
       // 서버로 name 값을 전달하여 데이터 요청
-      response = await axios.post('http://localhost:5000/api/myposts', {userName});
-      //console.log(response.data);
+      response = await axios.post('http://localhost:5000/myposts', {userID});
       setPosts(response.data);
-      console.log(posts);
     } catch (error) {
       console.error('Error:', error);
     }

@@ -57,7 +57,7 @@ function UploadImage(){
       setPost(response.data);
       // console.log(post);
     } catch (error) {
-      console.error('Error:', error);
+      console.error('수정할 게시글 가져오기 실패');
     }
   };
 
@@ -67,7 +67,6 @@ function UploadImage(){
       await axios.post('http://localhost:5000/revise', 
         {
           n: localStorage.getItem('postNum'),
-          name: post.name,
           imageSrc: post.imageSrc,
           hash1: post.hash1,
           hash2: post.hash2,
@@ -80,11 +79,11 @@ function UploadImage(){
         }
       );
         
-      alert("업로드 성공!");
+      alert("게시글 수정을 완료했습니다.");
       navigate('/mypage');
     } catch (error) {
-      alert('Upload failed');
-      console.error('Error:', error);
+      alert('게시글 수정을 실패했습니다.');
+      console.error('게시글 수정을 실패했습니다.');
     }
   }
 

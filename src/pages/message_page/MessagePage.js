@@ -4,29 +4,43 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Container, UserList, MessageContainer, TitleContainer } from "./MessagePageStyle";
+import { TitleContainer, MessageSelect, Container, UserList, MessageContainer, UserTitle } from "./MessagePageStyle";
+import { Image } from "../../components/TitleStyle";
 
-import TypeSelect from "../../components/message_component/TypeSelect";
-import UserTitle from "../../components/message_component/UserTitle";
 import MessageSend from "../../components/message_component/MessageSend";
 import Message from "../../components/message_component/Message";
+import MessageRequest from "../../components/message_component/MessageRequest";
+import home from '../../assets/logo_home.svg';
 
 function MessagePage() {
   const navigate = useNavigate();
+
+  const [isType, setIsType] = useState(true); // true이면 메세지, false이면 요청
 
   return(
     <Container>
       <UserList>
         <TitleContainer>
-          <TypeSelect/>
+          <MessageSelect style={{color:`${isType ? '#576fd7':""}`}} 
+            onClick={()=>{
+              setIsType(true);
+            }}
+          >메세지</MessageSelect>
+          <MessageSelect style={{color:`${!isType ? '#576fd7':""}`}}
+            onClick={()=>{
+              setIsType(false);
+            }}
+          >요청</MessageSelect>
+
+          <Image src={home} alt="홈 출력 실패" style={{paddingTop:"85px"}}onClick={()=>{navigate('/mainpage')}}/>
         </TitleContainer>
-        <MessageSend/>
+        { isType ? <MessageSend/> : <MessageRequest/> }
       </UserList>
       <MessageContainer>
         <TitleContainer>
-          <UserTitle/>
+          <UserTitle>{isType?'':''}</UserTitle>
         </TitleContainer>
-        <Message/>
+        {isType?<Message/>:<></>}
       </MessageContainer>
     </Container>
   )

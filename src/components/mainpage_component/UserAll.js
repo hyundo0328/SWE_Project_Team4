@@ -21,7 +21,6 @@ function UserAll(){
       // 사용자의 이름만 추출하여 설정
       const userNames = data.map(user => user.name);
       setUsers(userNames);
-      console.log(users);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -36,14 +35,6 @@ function UserAll(){
             <p key={index}>{userName}</p>
           ))
         }
-        {/* <p>사용자 1</p>
-        <p>사용자 1</p>
-        <p>사용자 1</p>
-        <p>사용자 1</p>
-        <p>사용자 1</p>
-        <p>사용자 1</p>
-        <p>사용자 1</p>
-        <p>사용자 1</p> */}
       </UserContainer>
     </>
   )

@@ -9,6 +9,20 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
+export const MessageSelect = styled.div`
+  margin-left: 30px;
+
+  padding-top: 90px;
+  font-size: 30px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  &:hover{
+    color: #576fd7;
+  }
+`;
+
 export const UserList = styled.div`
   background-color: #FFFFFF;
   width: 500px;
@@ -29,4 +43,11 @@ export const TitleContainer = styled.div`
   height: 150px;
   border-bottom: 4px solid #5B6DCE;
   justify-content: flex-start;
+`;
+
+export const UserTitle = styled.div`
+  font-size: 40px;
+  font-weight: bold;
+  padding: 50px;
+  align-items: center;
 `;

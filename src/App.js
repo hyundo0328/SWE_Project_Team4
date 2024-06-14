@@ -23,8 +23,7 @@ function App() {
         <Route path="/upload" element={<UploadPage/>}/>
         <Route path="/revise" element={<RevisePage/>}/>
         <Route path="/mypage" element={<MypagePage/>}/>
-        <Route path="/message-list" element={<MessagePage/>}/>
-        <Route path="/message-request" element={<div></div>}/>
+        <Route path="/message-page" element={<MessagePage/>}/>
         <Route path="/search-page" element={<SearchPage/>}/>
       </Routes>
     </div>

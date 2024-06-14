@@ -2,11 +2,10 @@
 // Warning 문장을 다 지워줌
 
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-import { Title, PostList, PostContainer, Container, UserContainer } from '../mainpage_component/PostFormStyle.js';
-import { Image, ImageContainer, TextContainer, HashContainer } from "../mypage_component/MyPostStyle.js";
+import { UserContainer } from '../mainpage_component/PostFormStyle.js';
+import { FormContainer, Image, ImageContainer, TextContainer, HashContainer } from "../mypage_component/MyPostStyle.js";
 import { Button } from "../ButtonStyle.js";
 
 function SearchPost(){
@@ -23,8 +22,7 @@ function SearchPost(){
     try {
       // 서버로 모든 Post 데이터 요청
       console.log(searchHashtag);
-      response = await axios.post('http://localhost:5000/searchposts', {searchHashtag});
-      //console.log(response.data);
+      response = await axios.post('http://localhost:5000/search/posts', {searchHashtag});
       setSearchPosts(response.data);
       console.log(searchPosts);
     } catch (error) {
@@ -32,37 +30,61 @@ function SearchPost(){
     }
   };
 
+  const requestMessage = async (postName, postID) => {
+    const userName = localStorage.getItem('userName');
+    const userID = localStorage.getItem('userID');
+    
+    if (userID === postID) {
+      alert("본인한테 메세지 요청을 보낼 수 없습니다.");
+      return;
+    }
+
+    try {
+      await axios.post('http://localhost:5000/request', 
+        {
+          sendReq: userName,
+          sendReqID: userID,
+          receiveReq: postName,
+          receiveReqID: postID
+        }, 
+        { headers: {'Content-Type': 'application/json'} }
+      );
+
+      alert("메세지 요청 성공!");
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return(
-    <>
+    <FormContainer>
       {
-        <PostList>
-          {
-            searchPosts.map((dataItem, index) => {
-              return(
-                <div key={index}>
-                  <PostContainer>
-                    <UserContainer>
-                      <div style={{fontSize:"25px", fontWeight:"bold"}}>{dataItem.name}</div>
-                      <Button style={{backgroundColor: "#576fd7"}} onClick={()=>{alert("메세지 요청 성공!")}}>보내기</Button>
-                    </UserContainer>
-                    <ImageContainer>
-                      <Image src={dataItem.imageSrc}/>
-                    </ImageContainer>
-                    <TextContainer>
-                      <HashContainer>
-                        <div className="hash-name">{dataItem.hash1}</div>
-                        <div className="hash-name">{dataItem.hash2}</div>
-                        <div className="hash-name">{dataItem.hash3}</div>
-                      </HashContainer>
-                    </TextContainer>
-                  </PostContainer>
-                </div>
-              )
-            })
-          }
-        </PostList>
+        searchPosts.map((dataItem, index) => {
+          return(
+            <div key={index} style={{}}>
+              <UserContainer>
+                <div style={{fontSize:"25px", fontWeight:"bold"}}>{dataItem.name}</div>
+                <Button style={{backgroundColor: "#576fd7"}} 
+                    onClick={()=>{
+                      requestMessage(dataItem.name, dataItem.ID);
+                    }}
+                  >보내기</Button>
+              </UserContainer>
+              <ImageContainer>
+                <Image src={dataItem.imageSrc}/>
+              </ImageContainer>
+              <TextContainer>
+                <HashContainer>
+                  <div className="hash-name">{dataItem.hash1}</div>
+                  <div className="hash-name">{dataItem.hash2}</div>
+                  <div className="hash-name">{dataItem.hash3}</div>
+                </HashContainer>
+              </TextContainer>
+            </div>
+          )
+        })
       }
-    </>
+    </FormContainer>
   )
 }
 

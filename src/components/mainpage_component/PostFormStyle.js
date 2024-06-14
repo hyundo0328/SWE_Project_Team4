@@ -19,11 +19,14 @@ export const Title = styled.div`
 export const PostList = styled.div`
   max-height: 800px;
   overflow-y: auto;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 550px;
 
   padding: 50px;
 `;
@@ -32,6 +35,7 @@ export const UserContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 800px;
   margin-bottom: 10px;
 `;
 

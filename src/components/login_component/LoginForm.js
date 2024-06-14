@@ -13,6 +13,8 @@ import { Label, InputText } from "../signup_component/SignupFormStyle.js";
 import school from "../../assets/logo_school.svg";
 
 function LoginForm(){
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     ID: '',
     PW: ''
@@ -35,18 +37,17 @@ function LoginForm(){
         const token = response.data.token;
         const decodedToken = jwtDecode(token);
         localStorage.setItem('userName', decodedToken.name); // 토큰을 localStorage에 저장
-    
+        localStorage.setItem('userID', decodedToken.ID);
+
         console.log(decodedToken);
         console.log('name:', decodedToken.name);
         console.log('ID:', decodedToken.ID);
         navigate('/mainpage');
     } catch (error) {
         alert('아이디 혹은 비밀번호가 틀렸습니다.');
-        console.error('Error:', error);
+        console.error('로그인 오류');
     }
   };
-
-  const navigate = useNavigate();
 
   return(
     <>

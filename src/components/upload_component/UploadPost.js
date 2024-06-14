@@ -12,8 +12,12 @@ import upload from '../../assets/logo_upload.svg';
 function UploadImage(){
   const navigate = useNavigate();
 
+  const userName = localStorage.getItem('userName');
+  const userID = localStorage.getItem('userID');
+
   const [formData, setFormData] = useState({
-    name: localStorage.getItem('userName'),
+    name: userName,
+    ID: userID,
     imageSrc: "",
     hash1: "",
     hash2: "",
@@ -40,6 +44,7 @@ function UploadImage(){
     }
   };
 
+  // Hash 입력 시 바로 변환하여 useState에 전환
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -56,6 +61,7 @@ function UploadImage(){
       await axios.post('http://localhost:5000/upload', 
         {
           name: formData.name,
+          ID: formData.ID,
           imageSrc: formData.imageSrc,
           hash1: formData.hash1,
           hash2: formData.hash2,
@@ -71,8 +77,8 @@ function UploadImage(){
       alert("업로드 성공!");
       navigate('/mypage');
     } catch (error) {
-      alert('Upload failed');
-      console.error('Error:', error);
+      alert('업로드 실패');
+      console.error('업로드 실패');
     }
   };
 
