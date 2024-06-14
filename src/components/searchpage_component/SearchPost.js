@@ -5,7 +5,8 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 import { UserContainer } from '../mainpage_component/PostFormStyle.js';
-import { FormContainer, Image, ImageContainer, TextContainer, HashContainer } from "../mypage_component/MyPostStyle.js";
+import { FormContainer, Image, TextContainer, HashContainer } from "../mypage_component/MyPostStyle.js";
+import { TextContent } from "../ContainerStyle.js";
 import { Button } from "../ButtonStyle.js";
 
 function SearchPost(){
@@ -63,16 +64,15 @@ function SearchPost(){
           return(
             <div key={index} style={{}}>
               <UserContainer>
-                <div style={{fontSize:"25px", fontWeight:"bold"}}>{dataItem.name}</div>
+                <div style={{fontSize:"28px", fontWeight:"bold"}}>{dataItem.name}</div>
                 <Button style={{backgroundColor: "#576fd7"}} 
                     onClick={()=>{
                       requestMessage(dataItem.name, dataItem.ID);
                     }}
                   >보내기</Button>
               </UserContainer>
-              <ImageContainer>
-                <Image src={dataItem.imageSrc}/>
-              </ImageContainer>
+              <Image src={dataItem.imageSrc}/>
+              <TextContent>{dataItem.content}</TextContent>
               <TextContainer>
                 <HashContainer>
                   <div className="hash-name">{dataItem.hash1}</div>

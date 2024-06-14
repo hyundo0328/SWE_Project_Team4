@@ -5,7 +5,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-import { ImageContainer, HashContainer, UploadButton } from "./RevisePostStyle";
+import {  } from "./RevisePostStyle";
+import { ImageContainer, TextInput, HashInput } from "../ContainerStyle";
+import { UploadButton } from "../ButtonStyle";
 
 function UploadImage(){
   const navigate = useNavigate();
@@ -68,6 +70,7 @@ function UploadImage(){
         {
           n: localStorage.getItem('postNum'),
           imageSrc: post.imageSrc,
+          content: post.content,
           hash1: post.hash1,
           hash2: post.hash2,
           hash3: post.hash3,
@@ -89,6 +92,16 @@ function UploadImage(){
 
   return(
     <>
+      <ImageContainer onClick={handleClick}>
+        <img src={post.imageSrc} alt="사진 출력 실패" style={{maxWidth:"800px", maxHeight:"400px"}}/>
+      </ImageContainer>
+      <TextInput type="text" placeholder="게시글 설명을 적어주세요." value={post.content} onChange={handleChange}/>
+      <HashInput>
+        <input type="text" name="hash1" className="hash" value={post.hash1} onChange={handleChange}/>
+        <input type="text" name="hash2" className="hash" value={post.hash2} onChange={handleChange}/>
+        <input type="text" name="hash3" className="hash" value={post.hash3} onChange={handleChange}/>
+      </HashInput>
+      <UploadButton onClick={revisePost}>수정하기</UploadButton>
       <input // 파일 불러오는 필드
         type="file"
         accept="image/*"
@@ -96,17 +109,6 @@ function UploadImage(){
         ref={fileInputRef}
         style={{ display: 'none' }} // 파일 입력 필드를 숨김
       />
-      <ImageContainer onClick={handleClick}>
-        <img src={post.imageSrc} alt="사진 출력 실패" className="image"/>
-      </ImageContainer>
-      <HashContainer>
-        <input type="text" name="hash1" className="hash" value={post.hash1} onChange={handleChange}/>
-        <input type="text" name="hash2" className="hash" value={post.hash2} onChange={handleChange}/>
-        <input type="text" name="hash3" className="hash" value={post.hash3} onChange={handleChange}/>
-      </HashContainer>
-      <UploadButton 
-        onClick={revisePost}
-      >수정하기</UploadButton>
     </>
   )
 }

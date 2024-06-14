@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 import { Title, PostList, PostContainer, Container, UserContainer } from './PostFormStyle.js';
-import { Image, ImageContainer, TextContainer, HashContainer } from "../mypage_component/MyPostStyle.js";
+import { Image, ImageContainer, TextContainer, TextContent, HashContainer } from "../ContainerStyle.js";
 import { Button } from "../ButtonStyle.js";
 
 import school from '../../assets/logo_school.svg';
@@ -79,7 +79,7 @@ function PostForm() {
                   <div key={index}>
                     <PostContainer>
                       <UserContainer>
-                        <div style={{fontSize:"25px", fontWeight:"bold"}}>{dataItem.name}</div>
+                        <div style={{fontSize:"28px", fontWeight:"bold"}}>{dataItem.name}</div>
                         <Button style={{backgroundColor: "#576fd7"}} 
                           onClick={()=>{
                             // console.log(dataItem.name, dataItem.ID);
@@ -90,6 +90,7 @@ function PostForm() {
                       <ImageContainer>
                         <Image src={dataItem.imageSrc}/>
                       </ImageContainer>
+                      <TextContent>{dataItem.content}</TextContent>
                       <TextContainer>
                         <HashContainer>
                           <div className="hash-name">{dataItem.hash1}</div>

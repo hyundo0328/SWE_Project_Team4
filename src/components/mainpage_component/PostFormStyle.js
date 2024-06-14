@@ -26,7 +26,7 @@ export const PostList = styled.div`
 export const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 550px;
+  height: 500px;
 
   padding: 50px;
 `;

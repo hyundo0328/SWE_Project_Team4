@@ -17,45 +17,12 @@ export const ImageContainer = styled.div`
 
   .image {
     max-width: 800px;
-    max-height: 400px;
+    max-height: 500px;
   }
   
   .text {
-    font-size: 1.5vw;
+    font-size: 30px;
     font-weight: bold;
     margin-top: 20px;
   }
-`;
-
-export const HashContainer = styled.div`
-  width: 100%;
-  margin-top: 25px;
-  display: flex;
-  justify-content: space-between;
-
-  .hash {
-    width: 10vw;
-    border: 2px solid #999;
-    border-radius: 5px;
-    outline-color: #576fd7;
-    padding: 10px 8px;
-
-    font-size: 20px;
-    color: #555;
-  }
-`;
-
-export const UploadButton = styled.button`
-  width: 50%;
-  height: 60px;
-  background-color: #576fd7;
-  border-radius: 10px;
-  border: 0px solid #fff;
-  margin-top: 12vh;
-  
-  font-size: 25px;
-  font-weight: bold;
-  color: white;
-
-  cursor: pointer;
 `;

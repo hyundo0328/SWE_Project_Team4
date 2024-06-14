@@ -24,7 +24,7 @@ const db = new sqlite3.Database(dbPath);
 /* 테이블 생성 */
 function createDB(){
     db.serialize(() => {
-        // db.run("DROP TABLE IF EXISTS messages");
+        // db.run("DROP TABLE IF EXISTS posts");
 
         // user DB
         db.run(`CREATE TABLE IF NOT EXISTS users (
@@ -41,6 +41,7 @@ function createDB(){
             name TEXT,
             ID TEXT,
             imageSrc TEXT,
+            content TEXT,
             hash1 TEXT,
             hash2 TEXT,
             hash3 TEXT
@@ -128,13 +129,13 @@ app.get('/allposts', (req, res) => {
 
 /* 업로드 Endpoint */
 app.post('/upload', (req, res) => {
-    const { name, ID, imageSrc, hash1, hash2, hash3 } = req.body;
+    const { name, ID, imageSrc, content, hash1, hash2, hash3 } = req.body;
 
-    if (!name || !ID || !imageSrc || !hash1 || !hash2 || !hash3) {
+    if (!name || !ID || !imageSrc || !content || !hash1 || !hash2 || !hash3) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    db.run(`INSERT INTO posts (name, ID, imageSrc, hash1, hash2, hash3) VALUES (?, ?, ?, ?, ?, ?)`, [name, ID, imageSrc, hash1, hash2, hash3], function(err) {
+    db.run(`INSERT INTO posts (name, ID, imageSrc, content, hash1, hash2, hash3) VALUES (?, ?, ?, ?, ?, ?, ?)`, [name, ID, imageSrc, content, hash1, hash2, hash3], function(err) {
         if (err) {
             return res.status(500).json({ message: 'Post upload failed' });
         }
@@ -189,7 +190,7 @@ app.post('/search/posts', (req, res) => {
     }); 
 });
 
-// Post DB Index를 이용한 Post 반환 엔드포인트
+// 수정을 위한 Post DB Index를 이용한 Post 반환 엔드포인트
 app.post('/get/post', (req, res) => {
     const { postNum } = req.body;
     console.log(postNum);
@@ -212,19 +213,19 @@ app.post('/get/post', (req, res) => {
 
 // Post 수정 엔드포인트
 app.post('/revise', (req, res) => {
-    const { n, imageSrc, hash1, hash2, hash3 } = req.body;
+    const { n, imageSrc, content, hash1, hash2, hash3 } = req.body;
 
-    if (!imageSrc || !hash1 || !hash2 || !hash3) {
+    if (!imageSrc || !content || !hash1 || !hash2 || !hash3) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
     const query = `
         UPDATE posts
-        SET imageSrc = ?, hash1 = ?, hash2 = ?, hash3 = ?
+        SET imageSrc = ?, content = ?, hash1 = ?, hash2 = ?, hash3 = ?
         WHERE n = ?
     `;
 
-    db.run(query, [imageSrc, hash1, hash2, hash3, n], function(err) {
+    db.run(query, [imageSrc, content, hash1, hash2, hash3, n], function(err) {
         if (err) {
             return res.status(500).json({ message: 'Post update failed' });
         }

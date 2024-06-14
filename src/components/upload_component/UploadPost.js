@@ -5,7 +5,8 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-import { ImageContainer, HashContainer, UploadButton } from "./UploadPostStyle";
+import { ImageContainer, TextInput, HashInput } from "../ContainerStyle";
+import { UploadButton } from "../ButtonStyle";
 
 import upload from '../../assets/logo_upload.svg';
 
@@ -19,6 +20,7 @@ function UploadImage(){
     name: userName,
     ID: userID,
     imageSrc: "",
+    content: "",
     hash1: "",
     hash2: "",
     hash3: ""
@@ -63,6 +65,7 @@ function UploadImage(){
           name: formData.name,
           ID: formData.ID,
           imageSrc: formData.imageSrc,
+          content: formData.content,
           hash1: formData.hash1,
           hash2: formData.hash2,
           hash3: formData.hash3,
@@ -84,6 +87,23 @@ function UploadImage(){
 
   return(
     <>
+      {formData.imageSrc ? (
+        <ImageContainer onClick={handleClick}>
+          <img src={formData.imageSrc} alt="Image fails" style={{ maxWidth: '800px', maxHeight: '400px' }} />
+        </ImageContainer>
+      ) : (
+        <ImageContainer onClick={handleClick}>
+          <img src={upload} alt="사진 출력 실패" className="image"/>
+          <div className="text">사진 업로드</div>
+        </ImageContainer>
+      )}
+      <TextInput type="text" name="content" placeholder="게시글 설명을 적어주세요." value={formData.content} onChange={handleChange}/>
+      <HashInput>
+        <input type="text" name="hash1" className="hash" placeholder="#hash1" value={formData.hash1} onChange={handleChange}/>
+        <input type="text" name="hash2" className="hash" placeholder="#hash2" value={formData.hash2} onChange={handleChange}/>
+        <input type="text" name="hash3" className="hash" placeholder="#hash3" value={formData.hash3} onChange={handleChange}/>
+      </HashInput>
+      <UploadButton onClick={handleSubmit}>업로드</UploadButton>
       <input // 파일 불러오는 필드
         type="file"
         accept="image/*"
@@ -91,21 +111,6 @@ function UploadImage(){
         ref={fileInputRef}
         style={{ display: 'none' }} // 파일 입력 필드를 숨김
       />
-      
-      {formData.imageSrc ? (
-        <img src={formData.imageSrc} alt="Image fails" style={{ maxWidth: '800px', maxHeight: '400px' }} />
-      ) : (
-        <ImageContainer onClick={handleClick}>
-          <img src={upload} alt="사진 출력 실패" className="image"/>
-          <div className="text">사진 업로드</div>
-        </ImageContainer>
-      )}
-      <HashContainer>
-        <input type="text" name="hash1" className="hash" value={formData.hash1} onChange={handleChange}/>
-        <input type="text" name="hash2" className="hash" value={formData.hash2} onChange={handleChange}/>
-        <input type="text" name="hash3" className="hash" value={formData.hash3} onChange={handleChange}/>
-      </HashContainer>
-      <UploadButton onClick={handleSubmit}>업로드</UploadButton>
     </>
   )
 }

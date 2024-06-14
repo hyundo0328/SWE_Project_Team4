@@ -11,7 +11,7 @@ export const ReviseContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  padding: 100px;
+  padding: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;

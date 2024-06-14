@@ -5,8 +5,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-import { PostContainer } from "../mainpage_component/PostFormStyle.js";
-import { FormContainer, ImageContainer, Image, HashContainer, TextContainer } from "./MyPostStyle";
+import { FormContainer, Image, TextContent, HashContainer, TextContainer } from "../ContainerStyle.js";
+import { ImageContainer } from "./MyPostStyle.js";
 import { Button } from "../ButtonStyle.js";
 
 function MyPost(){
@@ -39,22 +39,23 @@ function MyPost(){
       {
         posts.map((dataItem, index) => {
           return(
-            <div key={index} style={{marginBottom: '40px', marginRight:"40px"}}>
+            <div key={index} style={{marginBottom:"40px"}}>
               <ImageContainer>
                 <Image src={dataItem.imageSrc}/>
               </ImageContainer>
               <TextContainer>
-                <HashContainer>
-                  <div className="hash-name">{dataItem.hash1}</div>
-                  <div className="hash-name">{dataItem.hash2}</div>
-                  <div className="hash-name">{dataItem.hash3}</div>
-                </HashContainer>
+                <TextContent>{dataItem.content}</TextContent>
                 <Button style={{backgroundColor: "#576fd7"}} 
                   onClick={()=>{
                     localStorage.setItem('postNum', dataItem.n)
                     navigate('/revise');
                   }}>수정</Button>
               </TextContainer>
+              <HashContainer>
+                  <div className="hash-name">{dataItem.hash1}</div>
+                  <div className="hash-name">{dataItem.hash2}</div>
+                  <div className="hash-name">{dataItem.hash3}</div>
+                </HashContainer>
             </div>
           )
         })

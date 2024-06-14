@@ -18,25 +18,39 @@ export const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 800px;
+  width: 100%;
   height: 400px;
   background-color: #EEEEEE;
   border-radius: 10px;
+
+  cursor: pointer;
+
+  .image {
+    max-width: 800px;
+    max-height: 400px;
+  }
+  
+  .text {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
 `;
 
 export const Image = styled.img`
   width: 100%;
   max-width: 800px;
-  max-height: 500px;
+  max-height: 400px;
 `;
 
 export const HashContainer = styled.div`
   display: flex;
   gap: 20px;
+  margin-top: 5px;
 
   .hash-name {
     color: #555;
-    font-size: 25px;
+    font-size: 22px;
     font-weight: bold;
   }
 `;
@@ -44,7 +58,7 @@ export const HashContainer = styled.div`
 export const TextContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 5px;
 `;
 
 export const BlueButton = styled.button`
@@ -58,4 +72,44 @@ export const BlueButton = styled.button`
   color: white;
 
   cursor: pointer;
+`;
+
+export const TextInput = styled.input`
+  width: 97.2%;
+  margin-top: 25px;
+  padding: 10px 8px;
+
+  border: 2px solid #999;
+  border-radius: 5px;
+  outline-color: #576fd7;
+  padding: 10px 8px;
+
+  font-size: 20px;
+  color: #555;
+`;
+
+export const TextContent = styled.div`
+  color: #555;
+  font-size: 22px;
+  font-weight: bold;
+
+  margin-top: 10px;
+`;
+
+export const HashInput = styled.div`
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+
+  .hash {
+    width: 10vw;
+    border: 2px solid #999;
+    border-radius: 5px;
+    outline-color: #576fd7;
+    padding: 10px 8px;
+
+    font-size: 20px;
+    color: #555;
+  }
 `;
